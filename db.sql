@@ -1,5 +1,5 @@
 -- DBTools Manager Professional (Enterprise Edition)
--- Database Dump for: cucina
+-- Database Dump for: corso
 -- Backup Generated in: 23/04/2010 18:50:33
 -- Database Server Version: MySQL 5.1.26
 
@@ -16,6 +16,7 @@ SET FOREIGN_KEY_CHECKS=0;
 --
 -- Table: amministratori
 --
+drop table if exists amministratori;
 CREATE TABLE `amministratori` 
 (
 	`id_amministratore` varchar (50) NOT NULL, 
@@ -26,24 +27,26 @@ CREATE TABLE `amministratori`
 	`email` varchar (50), 
 	`telefono` varchar (50),
 	PRIMARY KEY (`id_amministratore`)
-) 
+); 
 -- GO
 
 --
 -- Dumping Table Data: amministratori
 --
-BEGIN;
+-- BEGIN;
 -- GO
 INSERT INTO `amministratori` (`id_amministratore`, `password`, `nome`, `cognome`, `dataNascita`, `email`, `telefono`) VALUES('idutente', 'password', 'Admin', 'Bianchi', '1975-02-25', 'administratorSC@gmail.com', '3331234567');
 -- GO
-INSERT INTO `amministratori` (`id_amministratore`, `password`, `nome`, `cognome`, `dataNascita`, `email`, `telefono`) VALUES('marco81', 'marco', 'Marco', 'Rossi', '1957-11-22', 'admScuolaCucina@tiscali.it', '3332456178');
+INSERT INTO `amministratori` (`id_amministratore`, `password`, `nome`, `cognome`, `dataNascita`, `email`, `telefono`) VALUES('marco81', 'marco', 'Marco', 'Rossi', '1957-11-22', 'admScuolacorso@tiscali.it', '3332456178');
 -- GO
-COMMIT;
+-- COMMIT;
 -- GO
 
 --
 -- Table: calendario
 --
+drop table if exists calendario;
+
 CREATE TABLE `calendario` 
 (
 	`id_edizione` integer (11) NOT NULL AUTO_INCREMENT , 
@@ -53,13 +56,13 @@ CREATE TABLE `calendario`
 	`aula` varchar (50), 
 	`docente` varchar (50),
 	PRIMARY KEY (`id_edizione`)
-) 
+) ;
 -- GO
 
 --
 -- Dumping Table Data: calendario
 --
-BEGIN;
+-- BEGIN;
 -- GO
 INSERT INTO `calendario` (`id_edizione`, `id_corso`, `dataInizio`, `durata`, `aula`, `docente`) VALUES(92, 87, '2010-05-07', 2, 'Aula 1', 'C. Amato');
 -- GO
@@ -79,18 +82,21 @@ INSERT INTO `calendario` (`id_edizione`, `id_corso`, `dataInizio`, `durata`, `au
 -- GO
 INSERT INTO `calendario` (`id_edizione`, `id_corso`, `dataInizio`, `durata`, `aula`, `docente`) VALUES(100, 90, '2010-04-28', 7, 'Aula3', 'M. Moretti');
 -- GO
-COMMIT;
+-- COMMIT;
 -- GO
 
 --
 -- Index: delCorso
 --
-ALTER TABLE `cucina`.`calendario` ADD INDEX delCorso (id_corso );
+ALTER TABLE `corso`.`calendario` ADD INDEX delCorso (id_corso );
 -- GO
 
 --
 -- Table: catalogo
 --
+
+drop table if exists catalogo;
+
 CREATE TABLE `catalogo` 
 (
 	`id_corso` integer (11) NOT NULL AUTO_INCREMENT , 
@@ -100,13 +106,13 @@ CREATE TABLE `catalogo`
 	`costo` double (13,2), 
 	`descrizione` varchar (2000),
 	PRIMARY KEY (`id_corso`)
-)
+);
 -- GO
 
 --
 -- Dumping Table Data: catalogo
 --
-BEGIN;
+-- BEGIN;
 -- GO
 INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(87, 'Sfiziosità di carne', 50, 15, 100.00, 'Squisiti bocconcini, piccole preparazioni classiche e ricette innovative. Un appetitoso viaggio attraverso i tanti modi di preparare e gustare la carne rossa e bianca, tra fantasia e tradizione, semplicità e raffinatezza.\r\n\r\nImportante!!!\r\nIl presente corso verrà erogato nel/i giorno/i\r\nindicato/i nel \'Calendario Corsi\' e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\nPro: poche calorie, colorati, facili da preparare, appetitosi…\r\nContro: una volta assaggiati vi richiederanno sempre porzioni abbondanti. da realizzare…\r\n\r\nImportante!!!\r\nIl presente corso verrà erogato nel/i giorno/i\r\nindicato/i nel \"Calendario Corsi\" e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n\r\n');
 -- GO
@@ -118,38 +124,41 @@ INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecip
 -- GO
 INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(92, 'Paste con verdure', 49, 15, 80.00, 'La primavera regala alla pasta soluzioni divertenti di sapore, all\'insegna dell\'originalità. Fave, melanzane, piselli, asparagi e tanti altri si sposeranno con garganelli, orecchiette, tagliolini... un gustoso matrimonio di sapori.\r\n\r\nImportante!!!\r\nIl presente corso verrà erogato nel/i giorno/i\r\nindicato/i nel \"Calendario Corsi\" e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n\r\n\r\n');
 -- GO
-INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(93, 'Corso di cucina (base)', 54, 20, 250.00, 'Un corso fondamentale, a cadenza settimanale, un vero e proprio punto di partenza per conoscere i procedimenti e le lavorazioni indispensabili per cucinare. Ogni incontro sarà l\'occasione per apprendere, attraverso la realizzazione di un menu completo, piccoli segreti sull\'esecuzione di piatti basilari o sull\'acquisto e la scelta degli alimenti, la loro lavorazione e infine i \"trucchi\" dello chef che saranno il vostro asso nella manica. Un corso importante attraverso cui capire e \"provare\" la cucina, che degusterete con l\'abbinamento dei vini. Possibilità di esercitarsi, nel corso della lezione, accanto allo chef. A fine corso sarà rilasciato un attestato.\r\n\r\nImportante!!!\r\nIl  presente corso verrà erogato con una cadenza settimanale a partire dal giorno\r\nindicato nel \"Calendario Corsi\"  e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n\r\n');
+INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(93, 'Corso di corso (base)', 54, 20, 250.00, 'Un corso fondamentale, a cadenza settimanale, un vero e proprio punto di partenza per conoscere i procedimenti e le lavorazioni indispensabili per corsore. Ogni incontro sarà l\'occasione per apprendere, attraverso la realizzazione di un menu completo, piccoli segreti sull\'esecuzione di piatti basilari o sull\'acquisto e la scelta degli alimenti, la loro lavorazione e infine i \"trucchi\" dello chef che saranno il vostro asso nella manica. Un corso importante attraverso cui capire e \"provare\" la corso, che degusterete con l\'abbinamento dei vini. Possibilità di esercitarsi, nel corso della lezione, accanto allo chef. A fine corso sarà rilasciato un attestato.\r\n\r\nImportante!!!\r\nIl  presente corso verrà erogato con una cadenza settimanale a partire dal giorno\r\nindicato nel \"Calendario Corsi\"  e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n\r\n');
 -- GO
-INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(94, 'Corso di cucina\r\n(avanzato)\r\n', 55, 20, 260.00, 'Accontentando le numerose richieste di chi ha già superato il livello di base, cinque incontri (a cadenza settimanale) in cui approfondire quegli argomenti che escono dalla conoscenza di base e si avvicinano maggiormente all\'alta cucina. Spazieremo nel mondo delle salse, della cottura a vapore per una cucina leggera ma piena di sapore, dei bolliti fatti ad arte, della pasta fatta in casa con creatività, del cous cous, del pan di Spagna e molte altre ghiottonerie.\r\n\r\nImportante!!!\r\nIl  presente corso verrà erogato con una cadenza settimanale a partire dal giorno\r\nindicato nel \"Calendario Corsi\"  e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n');
+INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(94, 'Corso di corso\r\n(avanzato)\r\n', 55, 20, 260.00, 'Accontentando le numerose richieste di chi ha già superato il livello di base, cinque incontri (a cadenza settimanale) in cui approfondire quegli argomenti che escono dalla conoscenza di base e si avvicinano maggiormente all\'alta corso. Spazieremo nel mondo delle salse, della cottura a vapore per una corso leggera ma piena di sapore, dei bolliti fatti ad arte, della pasta fatta in casa con creatività, del cous cous, del pan di Spagna e molte altre ghiottonerie.\r\n\r\nImportante!!!\r\nIl  presente corso verrà erogato con una cadenza settimanale a partire dal giorno\r\nindicato nel \"Calendario Corsi\"  e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n');
 -- GO
-INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(95, 'Corso di cucina per cuochi', 55, 15, 500.00, 'Un corso ben strutturato con teoria e pratica. E\' una guida per acquisire le tecniche base di cucina e apprendere l\'aspetto merceologico degli alimenti, l\'organizzazione di una cucina e le sue figure professionali. Un corso ideato per permettere a tutti, in tempi ristretti, di conoscere attraverso l\'esecuzione di ricette base le nozioni fondamentali del cucinare, la costruzione di un menu e la presentazione del piatto. Ogni argomento verrà trattato con la massima cura e correlato da utili dispense, dalle paste alle verdure, dal pesce alla carne, dagli antipasti alla pasticceria e tante altre informazioni, tutte finalizzate a formare una valida figura professionale. Consegna dell\'attestato di partecipazione con valutazione. La Direzione si riserva, a suo insindacabile giudizio, di far frequentare agli allievi più meritevoli stages formativi gratuiti presso aziende della ristorazione.\r\n\r\nImportante!!!\r\nIl presente corso verrà erogato nel/i giorno/i\r\nindicato/i nel \"Calendario Corsi\" e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n\r\n');
+INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(95, 'Corso di corso per cuochi', 55, 15, 500.00, 'Un corso ben strutturato con teoria e pratica. E\' una guida per acquisire le tecniche base di corso e apprendere l\'aspetto merceologico degli alimenti, l\'organizzazione di una corso e le sue figure professionali. Un corso ideato per permettere a tutti, in tempi ristretti, di conoscere attraverso l\'esecuzione di ricette base le nozioni fondamentali del corsore, la costruzione di un menu e la presentazione del piatto. Ogni argomento verrà trattato con la massima cura e correlato da utili dispense, dalle paste alle verdure, dal pesce alla carne, dagli antipasti alla pasticceria e tante altre informazioni, tutte finalizzate a formare una valida figura professionale. Consegna dell\'attestato di partecipazione con valutazione. La Direzione si riserva, a suo insindacabile giudizio, di far frequentare agli allievi più meritevoli stages formativi gratuiti presso aziende della ristorazione.\r\n\r\nImportante!!!\r\nIl presente corso verrà erogato nel/i giorno/i\r\nindicato/i nel \"Calendario Corsi\" e osserverà la durata di quattro ore (ore 18.00-22.00) per ogni giorno indicato.\r\n\r\n');
 -- GO
-INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(96, 'Corso di cucina indiana', 54, 25, 750.00, 'Un corso da non perdere');
+INSERT INTO `catalogo` (`id_corso`, `titolo`, `id_categoria`, `numeroMaxPartecipanti`, `costo`, `descrizione`) VALUES(96, 'Corso di corso indiana', 54, 25, 750.00, 'Un corso da non perdere');
 -- GO
-COMMIT;
+-- COMMIT;
 -- GO
 
 --
 -- Index: categoriaDelCorso
 --
-ALTER TABLE `cucina`.`catalogo` ADD INDEX categoriaDelCorso (id_categoria );
+ALTER TABLE `corso`.`catalogo` ADD INDEX categoriaDelCorso (id_categoria );
 -- GO
 
 --
 -- Table: categoria
 --
+
+drop table if exists categoria;
+
 CREATE TABLE `categoria` 
 (
 	`id_categoria` integer (11) NOT NULL AUTO_INCREMENT , 
 	`descrizione` varchar (50),
 	PRIMARY KEY (`id_categoria`)
-) 
+) ;
 -- GO
 
 --
 -- Dumping Table Data: categoria
 --
-BEGIN;
+-- BEGIN;
 -- GO
 INSERT INTO `categoria` (`id_categoria`, `descrizione`) VALUES(48, 'Antipasti');
 -- GO
@@ -163,16 +172,18 @@ INSERT INTO `categoria` (`id_categoria`, `descrizione`) VALUES(52, 'Frutta');
 -- GO
 INSERT INTO `categoria` (`id_categoria`, `descrizione`) VALUES(53, 'Dolci');
 -- GO
-INSERT INTO `categoria` (`id_categoria`, `descrizione`) VALUES(54, 'Cucina amatoriale');
+INSERT INTO `categoria` (`id_categoria`, `descrizione`) VALUES(54, 'corso amatoriale');
 -- GO
-INSERT INTO `categoria` (`id_categoria`, `descrizione`) VALUES(55, 'Cucina professionale(corsi per cuochi)');
+INSERT INTO `categoria` (`id_categoria`, `descrizione`) VALUES(55, 'corso professionale(corsi per cuochi)');
 -- GO
-COMMIT;
+-- COMMIT;
 -- GO
 
 --
 -- Table: feedback
 --
+drop table if exists feedback;
+
 CREATE TABLE `feedback` 
 (
 	`id_feedback` integer (11) NOT NULL AUTO_INCREMENT , 
@@ -181,13 +192,13 @@ CREATE TABLE `feedback`
 	`descrizione` varchar (50), 
 	`voto` integer (11),
 	PRIMARY KEY (`id_feedback`)
-) 
+) ;
 -- GO
 
 --
 -- Dumping Table Data: feedback
 --
-BEGIN;
+-- BEGIN;
 -- GO
 INSERT INTO `feedback` (`id_feedback`, `id_edizione`, `id_utente`, `descrizione`, `voto`) VALUES(1, 93, 'fausto', 'da consigliare!!!', 8);
 -- GO
@@ -199,53 +210,57 @@ INSERT INTO `feedback` (`id_feedback`, `id_edizione`, `id_utente`, `descrizione`
 -- GO
 INSERT INTO `feedback` (`id_feedback`, `id_edizione`, `id_utente`, `descrizione`, `voto`) VALUES(5, 99, 'michele', 'esaustivo!!!', 8);
 -- GO
-COMMIT;
+-- COMMIT;
 -- GO
 
 --
 -- Index: dellEdizione
 --
-ALTER TABLE `cucina`.`feedback` ADD INDEX dellEdizione (id_edizione );
+ALTER TABLE `corso`.`feedback` ADD INDEX dellEdizione (id_edizione );
 -- GO
 
 --
 -- Index: dellUtente
 --
-ALTER TABLE `cucina`.`feedback` ADD INDEX dellUtente (id_utente );
+ALTER TABLE `corso`.`feedback` ADD INDEX dellUtente (id_utente );
 -- GO
 
 --
 -- Table: iscritti
 --
+drop table if exists iscritti;
+
 CREATE TABLE `iscritti` 
 (
 	`id_edizione` integer (11) NOT NULL DEFAULT 0, 
 	`id_utente` varchar (50) NOT NULL,
 	PRIMARY KEY (`id_edizione`, `id_utente`)
-) 
+) ;
 -- GO
 
 --
 -- Dumping Table Data: iscritti
 --
-BEGIN;
+-- BEGIN;
 -- GO
 INSERT INTO `iscritti` (`id_edizione`, `id_utente`) VALUES(93, 'Ing_Ruben');
 -- GO
 INSERT INTO `iscritti` (`id_edizione`, `id_utente`) VALUES(100, 'veronica');
 -- GO
-COMMIT;
+-- COMMIT;
 -- GO
 
 --
 -- Index: utenteIscritto
 --
-ALTER TABLE `cucina`.`iscritti` ADD INDEX utenteIscritto (id_utente );
+ALTER TABLE `corso`.`iscritti` ADD INDEX utenteIscritto (id_utente );
 -- GO
 
 --
 -- Table: mail
 --
+drop table if exists mail;
+
 CREATE TABLE `mail` 
 (
 	`id` integer (11) NOT NULL AUTO_INCREMENT , 
@@ -253,20 +268,22 @@ CREATE TABLE `mail`
 	`data` varchar (50), 
 	`body` varchar (200),
 	PRIMARY KEY (`id`)
-) 
+) ;
 -- GO
 
 --
 -- Dumping Table Data: mail
 --
-BEGIN;
+-- BEGIN;
 -- GO
-COMMIT;
+-- COMMIT;
 -- GO
 
 --
 -- Table: registrati
 --
+drop table if exists registrati;
+
 CREATE TABLE `registrati` 
 (
 	`id_utente` varchar (50) NOT NULL, 
@@ -277,13 +294,13 @@ CREATE TABLE `registrati`
 	`email` varchar (50), 
 	`telefono` varchar (50),
 	PRIMARY KEY (`id_utente`)
-) 
+) ;
 -- GO
 
 --
 -- Dumping Table Data: registrati
 --
-BEGIN;
+-- BEGIN;
 -- GO
 INSERT INTO `registrati` (`id_utente`, `password`, `nome`, `cognome`, `dataNascita`, `email`, `telefono`) VALUES('davide', 'davide', 'Davide', 'Precetti', '1982-08-12', 'davide.precetti@gmail.com', '3391448087');
 -- GO

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,11 @@ import validator.ErroreValidazione;
 import validator.Validatore;
 
 
-@WebServlet("/regUtente")
+@WebServlet(
+		name="servletRegistrazioneUtente",
+		urlPatterns = {"/regUtente","/regU"},
+		initParams = {@WebInitParam(name="error.utente.required", value="l'utente non è presente")})
+
 public class RegistrazioneUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

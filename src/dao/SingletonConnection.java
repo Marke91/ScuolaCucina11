@@ -14,6 +14,7 @@ public class SingletonConnection {
 	private static String stringConnection = rb.getString("jdbc.stringConnection");
 	private static String idConnection=rb.getString("jdbc.username");
 	private static String passConnection=rb.getString("jdbc.password");
+	//private static String timezoneConnection=rb.getString("jdbc.serverTimezone");
 	
 	
 	private SingletonConnection() throws ConnessioneException{
@@ -25,6 +26,8 @@ public class SingletonConnection {
 		}
 	}
 	
+	// Utilizzo 
+	// Connection conn = SingletonConnection.getInstance();
 	public static Connection getInstance()throws ConnessioneException{
 		if(conn==null)
 			new SingletonConnection();

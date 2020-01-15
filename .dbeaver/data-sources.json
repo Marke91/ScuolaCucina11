@@ -1,0 +1,34 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-16fa85990d8-32a29aca821a9e3d": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "MySQL 8+ - corso",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "192.168.9.18",
+				"port": "3306",
+				"database": "corso",
+				"url": "jdbc:mysql://192.168.9.18:3306/corso",
+				"home": "C:\\Program Files\\MySQL\\MySQL Router 8.0",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-serverTimezone@": "Europe/Rome"
+				},
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}
